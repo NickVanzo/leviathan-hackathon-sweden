@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+.env
+.env.local
+.DS_Store
+
+# python environments
+.conda/
+.venv/
+venv/
+
+# large fetched data — regenerate via prep.ipynb
+data/bornholm/
+
+# C++ build output
+net/build/
+
+# node secret keyfiles (regenerate with: make keys)
+net/keys/*.key
+
+# editor index cache
+net/.cache/
+
+# tooling/config (local only)
+.claude/
+docs/superpowers/

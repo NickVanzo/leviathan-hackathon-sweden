@@ -1,0 +1,22 @@
+[
+  {
+    "id": "scene-bornholm-0914-d1",
+    "track_id": "bornholm-0914-d1",
+    "lat": 55.5542,
+    "lon": 15.1263,
+    "time": "2025-09-14T05:15:00Z",
+    "flag": "DARK",
+    "size_m": 184,
+    "scene": "scene-bornholm-0914"
+  },
+  {
+    "id": "scene-bornholm-0914-d2",
+    "track_id": "bornholm-0914-d2",
+    "lat": 55.2785,
+    "lon": 14.473,
+    "time": "2025-09-14T05:15:00Z",
+    "flag": "DARK",
+    "size_m": 96,
+    "scene": "scene-bornholm-0914"
+  }
+]
