@@ -1,3 +1,14 @@
+# Leviathan — Resilient Distributed Maritime Surveillance
+
+A hackathon prototype (Digital Earth Sweden, Critical Infrastructure Monitoring track) for spotting **dark vessels** in the Baltic — ships seen in Sentinel-1 SAR imagery with no matching AIS broadcast, the signature of the kind of activity behind subsea-cable sabotage.
+
+Two layers:
+
+1. **Detection layer** — a SAR + AIS pipeline (Python notebooks) matches satellite detections against AIS; anything unmatched becomes a signed **detection record**. Run once ahead of the event, exported to file — no live computer vision.
+2. **Network layer** — a peer-to-peer mesh of C++ nodes replicates those records and gossips until every node holds the same set. A Next.js map reads from any node and renders the vessels. Kill a node and its data is still served by the others: no single point of failure.
+
+The frontend lives in `frontend/`, the pipeline in the root notebooks, and the mesh in `net/`. The rest of this README covers the network layer; see `docs/adr/` for full design rationale.
+
 # Network layer
 
 A peer-to-peer mesh of C++ nodes that replicates signed vessel-detection records.
@@ -24,9 +35,9 @@ peer ──gossip(~1s)── Node ──gossip(~1s)── peer
 - **Static key allowlist** — no rotation/revocation; cut deliberately for the timeline.
 - **Confirmation is a new record, not a mutation** — flipping a candidate to `CONFIRMED` is a new signed record on the same track key; latest wins on read. Keeps records immutable and gossip a pure union.
 
-See `../docs/adr/` for the full rationale.
-
 ## Build & run
+
+From `net/`:
 
 ```
 make            # build
